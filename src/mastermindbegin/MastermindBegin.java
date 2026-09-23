@@ -17,7 +17,10 @@ public class MastermindBegin {
 			String witPinnetje = "Wit";
 			String leegPinnetje = "Leeg";
 
-			String geheimeCode;
+			String geheimeCode1 = roodPinnetje;
+			String geheimeCode2 = groenPinnetje;
+			String geheimeCode3 = blauwPinnetje;
+			String geheimeCode4 = paarsPinnetje;
 			String codeGekraakt;
 
 			String rij1pin1;
@@ -72,7 +75,7 @@ public class MastermindBegin {
 			
 			Scanner scanner = new Scanner(System.in);
 
-			System.out.println("Rij 1 pin 1: ");
+			System.out.println("Rij 1 pin 1: "); 
 			rij1pin1 = scanner.nextLine();
 
 			System.out.println("Rij 1 pin 2: ");
