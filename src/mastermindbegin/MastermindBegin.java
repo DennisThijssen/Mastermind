@@ -4,129 +4,105 @@ import java.util.Scanner;
 
 public class MastermindBegin {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		String roodPinnetje = "Rood";
-		String groenPinnetje = "Groen";
-		String geelPinnetje = "Geel";
-		String blauwPinnetje = "Blauw";
-		String oranjePinnetje = "Oranje";
-		String paarsPinnetje = "Paars";
-		String zwartPinnetje = "Zwart";
-		String witPinnetje = "Wit";
-		String leegPinnetje = "Leeg";
+        String[] kleurenkraker = {
+            "Rood", "Groen", "Geel", "Blauw", "Oranje", "Paars"
+        };
 
-		String geheimeCode1 = roodPinnetje;
-		String geheimeCode2 = groenPinnetje;
-		String geheimeCode3 = blauwPinnetje;
-		String geheimeCode4 = paarsPinnetje;
+        String[] maker = {
+            "Zwart", "Wit", "Leeg"
+        };
 
-		String rij1pin1;
-		String rij1pin2;
-		String rij1pin3;
-		String rij1pin4;
+        String[] geheimecode = new String[4];
 
-		int pogingen = 0;
-		boolean codeGekraakt = false;
+        geheimecode[0] = kleurenkraker[0];
+        geheimecode[1] = kleurenkraker[1];
+        geheimecode[2] = kleurenkraker[3];
+        geheimecode[3] = kleurenkraker[5];
 
-		Scanner scanner = new Scanner(System.in);
+        String[][] rij = new String[10][4];
 
-		for (pogingen = 0; pogingen < 10 && !codeGekraakt; pogingen++) {
+        int pogingen = 0;
+        boolean codeGekraakt = false;
 
-			System.out.println("Poging " + (pogingen + 1));
+        Scanner scanner = new Scanner(System.in);
 
-			System.out.println("Pin 1: ");
-			rij1pin1 = scanner.nextLine();
+        for (pogingen = 0; pogingen < 10 && !codeGekraakt; pogingen++) {
 
-			System.out.println("Pin 2: ");
-			rij1pin2 = scanner.nextLine();
+            System.out.println("Poging " + (pogingen + 1));
 
-			System.out.println("Pin 3: ");
-			rij1pin3 = scanner.nextLine();
+            System.out.println("Pin 1: ");
+            rij[pogingen][0] = scanner.nextLine();
 
-			System.out.println("Pin 4: ");
-			rij1pin4 = scanner.nextLine();
+            System.out.println("Pin 2: ");
+            rij[pogingen][1] = scanner.nextLine();
 
-			if (rij1pin1.equalsIgnoreCase(geheimeCode1)) {
+            System.out.println("Pin 3: ");
+            rij[pogingen][2] = scanner.nextLine();
 
-				rij1pin1 = zwartPinnetje;
+            System.out.println("Pin 4: ");
+            rij[pogingen][3] = scanner.nextLine();
 
-			} else if (rij1pin1.equalsIgnoreCase(geheimeCode2)
-					|| rij1pin1.equalsIgnoreCase(geheimeCode3)
-					|| rij1pin1.equalsIgnoreCase(geheimeCode4)) {
+            if (rij[pogingen][0].equalsIgnoreCase(geheimecode[0])) {
+                rij[pogingen][0] = maker[0];
+            } else if (rij[pogingen][0].equalsIgnoreCase(geheimecode[1])
+                    || rij[pogingen][0].equalsIgnoreCase(geheimecode[2])
+                    || rij[pogingen][0].equalsIgnoreCase(geheimecode[3])) {
+                rij[pogingen][0] = maker[1];
+            } else {
+                rij[pogingen][0] = maker[2];
+            }
 
-				rij1pin1 = witPinnetje;
+            if (rij[pogingen][1].equalsIgnoreCase(geheimecode[1])) {
+                rij[pogingen][1] = maker[0];
+            } else if (rij[pogingen][1].equalsIgnoreCase(geheimecode[0])
+                    || rij[pogingen][1].equalsIgnoreCase(geheimecode[2])
+                    || rij[pogingen][1].equalsIgnoreCase(geheimecode[3])) {
+                rij[pogingen][1] = maker[1];
+            } else {
+                rij[pogingen][1] = maker[2];
+            }
 
-			} else {
+            if (rij[pogingen][2].equalsIgnoreCase(geheimecode[2])) {
+                rij[pogingen][2] = maker[0];
+            } else if (rij[pogingen][2].equalsIgnoreCase(geheimecode[0])
+                    || rij[pogingen][2].equalsIgnoreCase(geheimecode[1])
+                    || rij[pogingen][2].equalsIgnoreCase(geheimecode[3])) {
+                rij[pogingen][2] = maker[1];
+            } else {
+                rij[pogingen][2] = maker[2];
+            }
 
-				rij1pin1 = leegPinnetje;
-			}
+            if (rij[pogingen][3].equalsIgnoreCase(geheimecode[3])) {
+                rij[pogingen][3] = maker[0];
+            } else if (rij[pogingen][3].equalsIgnoreCase(geheimecode[0])
+                    || rij[pogingen][3].equalsIgnoreCase(geheimecode[1])
+                    || rij[pogingen][3].equalsIgnoreCase(geheimecode[2])) {
+                rij[pogingen][3] = maker[1];
+            } else {
+                rij[pogingen][3] = maker[2];
+            }
 
-			if (rij1pin2.equalsIgnoreCase(geheimeCode2)) {
+            System.out.println("Pin 1: " + rij[pogingen][0]);
+            System.out.println("Pin 2: " + rij[pogingen][1]);
+            System.out.println("Pin 3: " + rij[pogingen][2]);
+            System.out.println("Pin 4: " + rij[pogingen][3]);
 
-				rij1pin2 = zwartPinnetje;
+            if (rij[pogingen][0].equals(maker[0])
+                    && rij[pogingen][1].equals(maker[0])
+                    && rij[pogingen][2].equals(maker[0])
+                    && rij[pogingen][3].equals(maker[0])) {
 
-			} else if (rij1pin2.equalsIgnoreCase(geheimeCode1)
-					|| rij1pin2.equalsIgnoreCase(geheimeCode3)
-					|| rij1pin2.equalsIgnoreCase(geheimeCode4)) {
+                codeGekraakt = true;
+                System.out.println("Code gekraakt!");
+            }
+        }
 
-				rij1pin2 = witPinnetje;
+        if (!codeGekraakt) {
+            System.out.println("Je hebt 10 pogingen gebruikt.");
+        }
 
-			} else {
-
-				rij1pin2 = leegPinnetje;
-			}
-
-			if (rij1pin3.equalsIgnoreCase(geheimeCode3)) {
-
-				rij1pin3 = zwartPinnetje;
-
-			} else if (rij1pin3.equalsIgnoreCase(geheimeCode1)
-					|| rij1pin3.equalsIgnoreCase(geheimeCode2)
-					|| rij1pin3.equalsIgnoreCase(geheimeCode4)) {
-
-				rij1pin3 = witPinnetje;
-
-			} else {
-
-				rij1pin3 = leegPinnetje;
-			}
-
-			if (rij1pin4.equalsIgnoreCase(geheimeCode4)) {
-
-				rij1pin4 = zwartPinnetje;
-
-			} else if (rij1pin4.equalsIgnoreCase(geheimeCode1)
-					|| rij1pin4.equalsIgnoreCase(geheimeCode2)
-					|| rij1pin4.equalsIgnoreCase(geheimeCode3)) {
-
-				rij1pin4 = witPinnetje;
-
-			} else {
-
-				rij1pin4 = leegPinnetje;
-			}
-
-			System.out.println("Pin 1: " + rij1pin1);
-			System.out.println("Pin 2: " + rij1pin2);
-			System.out.println("Pin 3: " + rij1pin3);
-			System.out.println("Pin 4: " + rij1pin4);
-
-			if (rij1pin1.equals(zwartPinnetje)
-					&& rij1pin2.equals(zwartPinnetje)
-					&& rij1pin3.equals(zwartPinnetje)
-					&& rij1pin4.equals(zwartPinnetje)) {
-
-				codeGekraakt = true;
-
-				System.out.println("Code gekraakt!");
-			}
-		}
-
-		if (!codeGekraakt) {
-			System.out.println("Je hebt 10 pogingen gebruikt.");
-		}
-
-		scanner.close();
-	}
+        scanner.close();
+    }
 }
